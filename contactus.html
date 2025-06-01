@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Vans Clothing Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: #1a1a1a;
+      color: white;
+    }
+
+    /* Header */
+    header {
+      background-color: #000;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 20px;
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .nav-menu a:hover {
+      color: #e60023;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      background-color: #3a3a3a;
+      border-radius: 9999px;
+      padding: 10px 20px;
+      flex: 1 1 400px;
+      max-width: 600px;
+      margin: 0 20
+
+px;
+    }
+
+    .search-container i {
+      color: white;
+      margin-right: 10px;
+    }
+
+    .search-container input {
+      background-color: transparent;
+      border: none;
+      color: white;
+      width: 100%;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-left: 20px;
+    }
+
+    .icons i {
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .icons .cart-counter {
+      position: relative;
+    }
+
+    .icons .cart-counter::after {
+      content: attr(data-count);
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: #e60023;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+      display: none;
+    }
+
+    .icons .cart-counter.has-items::after {
+      display: block;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
+    #nav-toggle {
+      display: none;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .contact p {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      background-color: #2a2a2a;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+    }
+
+    .contact-form input.error,
+    .contact-form textarea.error {
+      border: 1px solid #e60023;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .contact-form button {
+      background-color: #e60023;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .contact-form button:hover {
+      background-color: #c4001d;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+        margin-right: 20px;
+      }
+
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #000;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 20px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .nav-menu.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .nav-menu a {
+        margin: 10px 0;
+      }
+
+      .search-container {
+        margin: 10px 0;
+        flex: 1 1 100%;
+        max-width: none;
+      }
+
+      .icons {
+        margin-left: 0;
+      }
+
+      .contact h2 {
+        font-size: 28px;
+      }
+
+      .contact p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <i class="fas fa-bars hamburger" onclick="toggleMenu()" aria-label="Toggle navigation"></i>
+    <input type="checkbox" id="nav-toggle" />
+    <nav class="nav-menu">
+      <a href="index.html" onclick="closeMenu()">Home</a>
+      <a href="aboutus.html" onclick="closeMenu()">About Us</a>
+      <a href="contactus.html" onclick="closeMenu()">Contact Us</a>
+      <a href="feedback.html" onclick="closeMenu()">FeedBack</a>
+    </nav>
+    <div class="search-container">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Search Vans clothing..." aria-label="Search" />
+    </div>
+ <div class="icons">
+      <a href="location.html" aria-label="Store locator"><i class="fas fa-map-marker-alt"></i></a>
+      <a href="signup.html" aria-label="User profile"><i class="fas fa-user"></i></a>
+      <a href="cart.html" aria-label="Shopping cart"><i class="fas fa-shopping-cart cart-counter" data-count="0"></i></a>
+    </div>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <p>
+      Got a question about styling your Vans outfit? Interested in collaborating with us for a fashion project or event? Drop us a message, and let’s talk style, streetwear, or anything Vans-related!
+    </p>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <input type="text" placeholder="Your Name" name="name" />
+      <input type="email" placeholder="Your Email" name="email" />
+      <textarea placeholder="Your Message (e.g., styling tips, collaboration ideas)" name="message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Vans Clothing Store. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const navMenu = document.querySelector('.nav-menu');
+      const navToggle = document.getElementById('nav-toggle');
+      navMenu.classList.toggle('active');
+      navToggle.checked = !navToggle.checked;
+    }
+
+    function closeMenu() {
+      const navMenu = document.querySelector('.nav-menu');
+      const navToggle = document.getElementById('nav-toggle');
+      navMenu.classList.remove('active');
+      navToggle.checked = false;
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const name = form.querySelector('input[name="name"]').value.trim();
+      const email = form.querySelector('input[name="email"]').value.trim();
+      const message = form.querySelector('textarea[name="message"]').value.trim();
+      const inputs = form.querySelectorAll('input, textarea');
+
+      // Reset error states
+      inputs.forEach(input => input.classList.remove('error'));
+
+      // Basic validation
+      let hasError = false;
+      if (!name) {
+        form.querySelector('input[name="name"]').classList.add('error');
+        hasError = true;
+      }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        form.querySelector('input[name="email"]').classList.add('error');
+        hasError = true;
+      }
+      if (!message) {
+        form.querySelector('textarea[name="message"]').classList.add('error');
+        hasError = true;
+      }
+
+      if (!hasError) {
+        alert('Form submitted successfully! (This is a demo - no data sent.)');
+        form.reset();
+      } else {
+        alert('Please fill out all fields correctly.');
+      }
+    }
+
+    // Accessibility: Allow Enter key to toggle menu
+    document.querySelector('.hamburger').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const navMenu = document.querySelector('.nav-menu');
+      const hamburger = document.querySelector('.hamburger');
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target) && navMenu.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+  </script>
+</body>
+</html>
